@@ -1,7 +1,7 @@
 == lolcommits-dot-com
 
 Rails app presenting a gallery of your lolcommits. Requires signup/login
-(secured with GitHub oAuth login) and publically hosted on Heroku;
+(secured with GitHub OAuth login) and publically hosted on Heroku;
 
     https://lolcommits-dot-com.herokuapp.com
 
@@ -44,9 +44,9 @@ To run the test suite;
 
     bundle exec rake
 
-=== GitHub oAuth
+=== GitHub OAuth
 
-If you want to have Git oAuth work locally, you should create a new application
+If you want to have Git OAuth work locally, you should create a new application
 at GitHub for local development;
 
 Visit https://github.com/settings/application create a new app and make sure to
