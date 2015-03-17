@@ -1,9 +1,14 @@
 == lolcommits-dot-com
 
-Rails app presenting a gallery of your lolcommits. Requires signup/login
-(secured with GitHub OAuth login) and publically hosted on Heroku;
+Hosts a gallery of your lolcommits.
+
+* Rails app
+* Requires signup/login (secured with GitHub OAuth login)
+* Hosted on Heroku;
 
     https://lolcommits-dot-com.herokuapp.com
+
+==== Lolcommits Plugin
 
 To auto upload your lolcommits;
 
@@ -20,7 +25,7 @@ To auto upload your lolcommits;
     repo_id: { copy & paste from External Id from your new repo}
 
 
-=== Getting Started locally
+==== Development
 
 Some initial set up is involved after cloning this repository. First configure
 your local postgresql connection in config/database.yml
@@ -44,7 +49,7 @@ To run the test suite;
 
     bundle exec rake
 
-=== GitHub OAuth
+==== GitHub OAuth
 
 If you want to have Git OAuth work locally, you should create a new application
 at GitHub for local development;
