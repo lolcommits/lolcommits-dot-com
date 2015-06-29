@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.2.1"
+ruby "2.2.2"
 
 # Rails
-gem 'rails', '4.0.13'
+gem 'rails', '4.2.3'
 gem 'jquery-rails'
 gem 'coffee-script'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
