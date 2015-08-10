@@ -1,4 +1,4 @@
-LolcommitServer::Application.routes.draw do
+Jahbs::Application.routes.draw do
   resources :git_commits do
     get :latest_commits, on: :collection
   end
