@@ -15,15 +15,16 @@
         API Secret:
       = current_user.api_secret
 
-%h3 Repositories
-%br
-- current_user.repos.each do |repo|
-  .row
-    .span6
-      .well
-        %b Name
-        = repo.name
-        %br
-        %b
-          External Id:
-        = repo.external_id
+- if current_user.repos.exists?
+  %h3 Repositories
+  %br
+  - current_user.repos.each do |repo|
+    .row
+      .span6
+        .well
+          %b Name
+          = repo.name
+          %br
+          %b
+            External Id:
+          = repo.external_id
