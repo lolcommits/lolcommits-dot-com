@@ -1,7 +1,7 @@
 class Repo < ActiveRecord::Base
   attr_accessible :name
   has_and_belongs_to_many :users
-  has_many :git_commits
+  has_many :git_commits, dependent: :destroy
 
   after_initialize :generate_external_id
   validates :name, :presence => true, :uniqueness => true
