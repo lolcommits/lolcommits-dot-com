@@ -9,7 +9,7 @@ class GitCommit < ActiveRecord::Base
   belongs_to :user
   belongs_to :repo
   self.per_page = 10
-  FIREHOSE_HOST = Rails.application.config.firehose['url'] 
+  FIREHOSE_HOST = Rails.application.config.firehose['url']
   after_commit :post_to_firehose
 
   def repo_external_id=(external_id)
@@ -39,5 +39,4 @@ class GitCommit < ActiveRecord::Base
       FIREHOSE_HOST + "users/#{self.user_id}"
     ]
   end
-
 end

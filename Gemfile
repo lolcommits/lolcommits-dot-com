@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.1"
+ruby "2.3.0"
 
 # Rails
 gem 'rails', '4.0.13'
@@ -37,6 +37,7 @@ end
 group :development do
   # running Procfile
   gem 'foreman'
+  gem 'pry-remote'
 end
 
 group :test do

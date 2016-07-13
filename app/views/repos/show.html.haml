@@ -11,6 +11,8 @@
         %br
         %b Users:
         = current_repo.users.collect {|u| u.name}.join(',')
+        %p
+          = button_to('delete repo?', repo_path(current_repo), method: "delete", data: { confirm: "Are you sure? This will remove all uploaded lolcommit images for this repository from lolcommits-dot-com." }, class: 'btn btn-mini pull-right')
 .users
 
 .commits

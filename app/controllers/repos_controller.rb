@@ -1,6 +1,6 @@
 class ReposController < ApplicationController
   before_filter :require_current_user, :except => [:show, :index]
-  before_filter :require_current_repo, :only => :show
+  before_filter :require_current_repo, :only => [:show, :destroy]
 
   def new
     @repo = Repo.new
@@ -35,6 +35,18 @@ class ReposController < ApplicationController
 
     respond_to do |format|
         format.json { render json: @repos}
+    end
+  end
+
+  def destroy
+    # ensure all git commits are destroyed first
+    current_repo.git_commits.destroy_all
+
+    if !current_repo.git_commits.exists?
+      current_repo.destroy
+      redirect_to root_url
+    else
+      redirect_to repo_path(current_repo)
     end
   end
 

@@ -54,7 +54,7 @@ To run the test suite;
 If you want to have Git OAuth work locally, you should create a new application
 at GitHub for local development;
 
-Visit https://github.com/settings/application create a new app and make sure to
+Visit https://github.com/settings/applications create a new app and make sure to
 set the following;
 
     Homepage URL: http://localhost:3000
