@@ -34,6 +34,8 @@ group :production do
   gem 'newrelic_rpm'
 end
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 group :development do
   # running Procfile
   gem 'foreman'

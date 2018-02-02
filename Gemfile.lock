@@ -55,6 +55,10 @@ GEM
     cookiejar (0.3.3)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     em-hiredis (0.3.1)
       eventmachine (~> 1.0)
       hiredis (~> 0.6.0)
@@ -384,6 +388,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   carrierwave
   coffee-script
+  dotenv-rails
   factory_girl_rails
   fakeweb
   firehose
@@ -416,4 +421,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.15.1
+   1.16.1
