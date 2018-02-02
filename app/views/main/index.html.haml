@@ -1,38 +1,38 @@
 - if current_user.blank?
   = link_to 'Login', auth_github_path
-%h2 
-  Get Started
+- elsif GitCommit.last
+  %h2 Latest Lolcommit
+  %p
+    = image_tag GitCommit.last.image.url, :id => 'main_image'
+
+%h2
+  Getting Started
 %ol
   - if current_user.blank?
     %li= link_to 'Sign Up for an Account', auth_github_path
-  - else
-    %li Sign up for an Account
 
-  %li 
-    Install latest version of lolcommits:
+  %li
+    Install latest version of lolcommits and the dotcom plugin:
     %pre
-      gem uninstall lolcommits
-      gem install lolcommits
+      gem uninstall lolcommits lolcommits-dotcom
+      gem install lolcommits lolcommits-dotcom
+
   %li
     =link_to 'Create a new repo', new_repo_path
-    or have a collaborator on your repo give you the repo_external_id for the project they have configured.  This will be a UUID.
-  %li 
+    or have a collaborator on your repo give you the repo_external_id for the project they have configured.
+
+  %li
     Enable lolcommits
     %pre
       cd &lt;repo directory&gt;
       lolcommits --enable
 
   %li
-    Configure lolcommits.com in the gem.
-    %pre
-      
-      lolcommits --config --plugin dot_com
-      enabled: &lt;true&gt;
-      ="api_key: <your user's api key> #{current_user.blank? ? '' : "value: [#{current_user.api_key}]"}"
-      ="api_secret: <your user's secret api key> #{current_user.blank? ? '' : "value: [#{current_user.api_secret}]"}"
+    Configure the lolcommits-dotcom plugin for your repo:
+  %pre
+    cd &lt;repo directory&gt;
+    lolcommits --config --plugin dotcom
+  %pre
+    = "enabled: true\napi_key: #{current_user.blank? ? "<your user's api key>" : "#{current_user.api_key}"}\napi_secret: #{current_user.blank? ? "<your user's secret api key>" : "#{current_user.api_secret}"}\nrepo_id: <repo external id>"
 
-      repo_id: &lt;Repo External ID&gt;
   %li Smile for the camera when you make commits.
-
-- #%h2 Latest Lolcommit
-= # image_tag GitCommit.last.image.url, :id => 'main_image'

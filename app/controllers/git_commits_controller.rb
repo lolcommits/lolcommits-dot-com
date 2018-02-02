@@ -5,6 +5,7 @@ class GitCommitsController < ApplicationController
 
   def new
     @git_commit = GitCommit.new
+    @repos = current_user.repos.all
   end
 
   def create

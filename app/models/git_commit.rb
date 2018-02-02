@@ -1,7 +1,7 @@
 class GitCommit < ActiveRecord::Base
   attr_accessible :repo_external_id, :sha, :image, :email, :raw
 
-  validates :sha,  :presence => true
+  validates :sha, :repo_id, :presence => true
 
   mount_uploader :image, ImageUploader
   mount_uploader :raw,   ImageUploader
@@ -19,6 +19,10 @@ class GitCommit < ActiveRecord::Base
     if ! repo.blank? && ! user.blank? && !repo.users.include?(user)
       repo.users << self.user
     end
+  end
+
+  def repo_external_id
+    repo ? repo.external_id : nil
   end
 
   private
