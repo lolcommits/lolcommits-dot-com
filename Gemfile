@@ -4,6 +4,7 @@ ruby "2.5.0"
 
 # Rails
 gem 'rails', '4.2.10'
+gem 'pg', '~> 0.21.0'
 gem 'jquery-rails'
 gem 'coffee-script'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
@@ -15,17 +16,16 @@ gem 'puma'
 # App dependencies
 gem 'firehose'
 gem 'uuid'
-gem "rmagick", "2.16.0", :require => 'RMagick'
+gem "rmagick", :require => 'RMagick'
 gem 'httparty'
 gem 'omniauth-github'
 gem 'github_api'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'fog'
+gem 'fog-aws'
 gem 'haml'
 gem 'simple_form'
 gem 'carrierwave'
-gem 'pg', '~> 0.21.0'
 
 group :production do
   # heroku

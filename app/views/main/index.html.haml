@@ -1,10 +1,10 @@
 - if current_user.blank?
   = link_to 'Login', auth_github_path
 - elsif GitCommit.last
-  %h2 Latest Lolcommit
+  %h2 Latest Lols
   %p
-    = image_tag GitCommit.last.image.url, :id => 'main_image'
-
+    - GitCommit.last(5).each do |commit|
+      = link_to(image_tag(commit.image.url, width: '185px'), commit.raw_url)
 %h2
   Getting Started
 %ol

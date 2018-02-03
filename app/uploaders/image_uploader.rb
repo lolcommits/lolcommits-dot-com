@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'fog/aws'
 
 class ImageUploader < CarrierWave::Uploader::Base
 
