@@ -1,6 +1,6 @@
 == lolcommits-dot-com
 
-Hosts a gallery of your lolcommits at [lolcommits.com](https://lolcommits.com)
+Hosts a gallery of your lolcommits at https://lolcommits.com
 
 * Rails app
 * Requires signup/login (secured with GitHub OAuth login)
@@ -55,8 +55,8 @@ To run the test suite
 If you want to have Git OAuth work locally, you should create a new application
 at GitHub for local development.
 
-Visit [GitHub Applications](https://github.com/settings/applications) and create
-a new app, making sure to set the following:
+Visit https://github.com/settings/applications and create a new app, making
+sure to set the following:
 
     Homepage URL: http://localhost:3000
     Authorization callback URL: http://localhost:3000/auth/github/callback
