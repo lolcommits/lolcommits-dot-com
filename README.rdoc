@@ -1,23 +1,24 @@
 == lolcommits-dot-com
 
-Hosts a gallery of your lolcommits.
+Hosts a gallery of your lolcommits at [lolcommits.com](https://lolcommits.com)
 
 * Rails app
 * Requires signup/login (secured with GitHub OAuth login)
-* Hosted on Heroku;
-
-    https://lolcommits-dot-com.herokuapp.com
+* Hosted on Heroku
 
 ==== Lolcommits Plugin
 
-To auto upload your lolcommits;
+To auto upload your lolcommits:
 
-* Signup and login at the URL above
+* Sign up or login at the URL above
 * Click 'New Repo' to create a new repo (give it a name)
-* Install the lolcommits gem
-* Configure the `dot_com` plugin like so;
+* Install the lolcommits gem and lolcommits-dotcom plugin
 
-    lolcommits --config -p dot_com
+    gem install lolcommits lolcommits-dotcom
+
+* Configure the plugin with:
+
+    lolcommits --config -p dotcom
 
     enabled: true
     api_key: {copy & paste your API key from Account Info}
@@ -28,7 +29,7 @@ To auto upload your lolcommits;
 ==== Development
 
 Some initial set up is involved after cloning this repository. First configure
-your local postgresql connection in config/database.yml
+your local Postgresql connection in config/database.yml
 
     cp config/database.example.yml config/database.yml
 
@@ -41,24 +42,23 @@ Install dependencies
     bundle install
     bundle exec rake db:migrate
 
-Run the web server at http://localhost:3000;
+Run the web server (with foreman) at http://localhost:3000
 
-   bundle exec foreman start
+   foreman start
 
-To run the test suite;
+To run the test suite
 
     bundle exec rake
 
 ==== GitHub OAuth
 
 If you want to have Git OAuth work locally, you should create a new application
-at GitHub for local development;
+at GitHub for local development.
 
-Visit https://github.com/settings/applications create a new app and make sure to
-set the following;
+Visit [GitHub Applications](https://github.com/settings/applications) and create
+a new app, making sure to set the following:
 
     Homepage URL: http://localhost:3000
     Authorization callback URL: http://localhost:3000/auth/github/callback
 
-Then paste your new GitHub application key and secret to app's the local `.env`
-file.
+Then paste your new GitHub application key and secret to the `.env` file.
