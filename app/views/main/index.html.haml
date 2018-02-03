@@ -1,15 +1,16 @@
-- if current_user.blank?
-  = link_to 'Login', auth_github_path
-- elsif GitCommit.last
-  %h2 Latest Lols
+- if @git_commits.present?
+  %h2 Your Latest Lols
   %p
-    - GitCommit.last(5).each do |commit|
-      = link_to(image_tag(commit.image.url, width: '185px'), commit.raw_url)
+    - @git_commits.each do |git_commit|
+      = link_to(image_tag(git_commit.image.url, width: '185px'), git_commit.raw_url)
 %h2
   Getting Started
 %ol
   - if current_user.blank?
-    %li= link_to 'Sign Up for an Account', auth_github_path
+    %li
+      = link_to 'Login', auth_github_path
+      or
+      = link_to 'Sign Up', auth_github_path
 
   %li
     Install latest version of lolcommits and the dotcom plugin:

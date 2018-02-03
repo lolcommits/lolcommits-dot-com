@@ -16,7 +16,7 @@ gem 'puma'
 # App dependencies
 gem 'firehose'
 gem 'uuid'
-gem "rmagick", :require => 'RMagick'
+gem 'rmagick'
 gem 'httparty'
 gem 'omniauth-github'
 gem 'github_api'
