@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.3.0"
+ruby "2.5.0"
 
 # Rails
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.10'
 gem 'jquery-rails'
 gem 'coffee-script'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
@@ -25,7 +25,7 @@ gem 'fog'
 gem 'haml'
 gem 'simple_form'
 gem 'carrierwave'
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 
 group :production do
   # heroku
@@ -47,7 +47,7 @@ group :test do
   gem 'spin'
   gem 'mocha', :require => false
   gem 'fakeweb'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'shoulda', :require => false
   gem 'shoulda-matchers', :require => false
 end

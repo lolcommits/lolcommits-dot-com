@@ -1,4 +1,5 @@
 = simple_form_for @git_commit, :html => {:multipart => true} do |f|
+  = f.input :repo_external_id, collection: @repos, label_method: :name, value_method: :external_id, label: "Repo", :include_blank => false
   = f.input :sha
   = f.input :image, :as => :file
   = f.input :raw, :as => :file

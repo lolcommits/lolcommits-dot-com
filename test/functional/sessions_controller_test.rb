@@ -18,8 +18,8 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "destroy user session" do
-    user = FactoryGirl.create(:user)
-    sign_in(user) 
+    user = FactoryBot.create(:user)
+    sign_in(user)
     delete :destroy
     assert_nil session[:user_id]
   end
@@ -40,8 +40,8 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "create user exists" do
-    u = FactoryGirl.create(:user, :github_id => 233615)
-    
+    u = FactoryBot.create(:user, :github_id => 233615)
+
     assert_no_difference 'User.count' do
       get :create, :provider => 'github'
     end

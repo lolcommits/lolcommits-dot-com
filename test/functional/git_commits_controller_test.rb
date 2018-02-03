@@ -2,13 +2,13 @@ require 'test_helper'
 
 class GitCommitsControllerTest < ActionController::TestCase
   test "new" do
-    sign_in FactoryGirl.create(:user)
+    sign_in FactoryBot.create(:user)
     get :new
     assert_response :success
   end
 
   test "create failure" do
-    sign_in FactoryGirl.create(:user)
+    sign_in FactoryBot.create(:user)
     assert_no_difference 'GitCommit.count' do
       post :create, :git_commit => {}
     end
@@ -16,7 +16,7 @@ class GitCommitsControllerTest < ActionController::TestCase
   end
 
   test "create failure json" do
-    sign_in FactoryGirl.create(:user)
+    sign_in FactoryBot.create(:user)
     assert_no_difference 'GitCommit.count' do
       post :create, :git_commit => {}, :format => :json
     end
@@ -25,9 +25,9 @@ class GitCommitsControllerTest < ActionController::TestCase
   end
 
   test "create success json" do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in user
-    repo = FactoryGirl.create(:repo, :external_id => 'omg')
+    repo = FactoryBot.create(:repo, :external_id => 'omg')
     assert_difference 'GitCommit.count' do
       post :create, :git_commit => {
         :sha => 'sss',
@@ -42,8 +42,8 @@ class GitCommitsControllerTest < ActionController::TestCase
   end
 
   test "create success" do
-    sign_in FactoryGirl.create(:user)
-    repo = FactoryGirl.create(:repo, :external_id => 'omg')
+    sign_in FactoryBot.create(:user)
+    repo = FactoryBot.create(:repo, :external_id => 'omg')
     assert_difference 'GitCommit.count' do
       post :create, :git_commit => {
         :sha => 'sss',
@@ -56,8 +56,8 @@ class GitCommitsControllerTest < ActionController::TestCase
   end
 
   test "create pass invalid repo_id" do
-    sign_in FactoryGirl.create(:user)
-    repo = FactoryGirl.create(:repo, :external_id => 'omg')
+    sign_in FactoryBot.create(:user)
+    repo = FactoryBot.create(:repo, :external_id => 'omg')
     assert_no_difference 'GitCommit.count' do
       post :create, :git_commit => {
         :sha => 'sss',
@@ -73,7 +73,7 @@ class GitCommitsControllerTest < ActionController::TestCase
   end
 
   test "show success" do
-    gc = FactoryGirl.create(:git_commit)
+    gc = FactoryBot.create(:git_commit)
     get :show, :id => gc.id
     assert_response :success
   end
@@ -84,9 +84,9 @@ class GitCommitsControllerTest < ActionController::TestCase
   end
 
   test "index" do
-    gc1 = FactoryGirl.create(:git_commit)
-    gc2 = FactoryGirl.create(:git_commit)
-    gc3 = FactoryGirl.create(:git_commit)
+    gc1 = FactoryBot.create(:git_commit)
+    gc2 = FactoryBot.create(:git_commit)
+    gc3 = FactoryBot.create(:git_commit)
 
     get :index, :shas => [gc1.sha, gc2.sha].join(',')
     assert_equal [gc1.id, gc2.id].sort, ActiveSupport::JSON.decode(@response.body).collect{|gc| gc['id'] }.sort
@@ -95,7 +95,7 @@ class GitCommitsControllerTest < ActionController::TestCase
   test "latest_commits" do
     gc = []
     10.times do |x|
-      gc[x] = FactoryGirl.create(:git_commit, :created_at => Time.now + x.day)
+      gc[x] = FactoryBot.create(:git_commit, :created_at => Time.now + x.day)
     end
 
     get :latest_commits
@@ -115,7 +115,7 @@ class GitCommitsControllerTest < ActionController::TestCase
     gc = []
     10.times do |x|
       user_id = x.even? ? 1 : 2
-      gc[x] = FactoryGirl.create(:git_commit, :user_id => user_id, :created_at => Time.now + x.day)
+      gc[x] = FactoryBot.create(:git_commit, :user_id => user_id, :created_at => Time.now + x.day)
     end
 
     get :latest_commits, :user_ids => [1]

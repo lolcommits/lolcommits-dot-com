@@ -13,14 +13,14 @@ class ApplicationControllerTest < ActionController::TestCase
   self.controller_class = TestController
 
   test "current_user by session" do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in user
     get :get_current_user
     assert_equal user.id, json_resp['id']
   end
 
   test "current_user by api key" do
-    user = FactoryGirl.create(:user) 
+    user = FactoryBot.create(:user)
     t = Time.now.to_i.to_s
     get :get_current_user, :key => user.api_key,
       :t => t,
@@ -40,7 +40,7 @@ class ApplicationControllerTest < ActionController::TestCase
   end
 
   test "api credentials not good" do
-    user = FactoryGirl.create(:user) 
+    user = FactoryBot.create(:user)
     get :get_current_user, :key => user.api_key,
       :t => "OMG",
       :token =>  Digest::SHA1.hexdigest(user.api_secret + "LOL")

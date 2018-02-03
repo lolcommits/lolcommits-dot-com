@@ -11,7 +11,7 @@ class AnimatedGifsControllerTest < ActionController::TestCase
   end
 
   test "create success" do
-    gc = FactoryGirl.create(:git_commit)
+    gc = FactoryBot.create(:git_commit)
     assert_difference 'AnimatedGif.count' do
       post :create, :animated_gif => {:shas => gc.sha}
     end
