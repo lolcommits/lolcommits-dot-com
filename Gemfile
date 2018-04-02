@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.5.0"
+ruby "2.5.1"
 
 # Rails
 gem 'rails', '4.2.10'
@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'coffee-script'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'protected_attributes'
+gem 'rails-html-sanitizer', '~>1.0.4' # due to CVE-2018-3741
 
 # Web server (see Procfile)
 gem 'puma'
