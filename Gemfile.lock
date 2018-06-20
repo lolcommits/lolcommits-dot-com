@@ -243,7 +243,7 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uuid (2.3.8)
+    uuid (2.3.9)
       macaddr (~> 1.0)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
