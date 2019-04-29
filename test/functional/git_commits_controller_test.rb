@@ -9,7 +9,7 @@ class GitCommitsControllerTest < ActionController::TestCase
 
   test "create failure" do
     sign_in create(:user)
-    repo = create(:repo, :external_id => 'omg')
+    repo = create(:repo, external_id: 'omg')
     assert_no_difference 'GitCommit.count' do
       post :create, params: { git_commit: { sha: ' ', repo_external_id: 'omg' } }
     end
@@ -18,7 +18,7 @@ class GitCommitsControllerTest < ActionController::TestCase
 
   test "create failure json" do
     sign_in create(:user)
-    repo = create(:repo, :external_id => 'omg')
+    repo = create(:repo, external_id: 'omg')
     assert_no_difference 'GitCommit.count' do
       post :create, format: :json, params: { git_commit: { sha: ' ', repo_external_id: 'omg' } }
     end
@@ -29,7 +29,7 @@ class GitCommitsControllerTest < ActionController::TestCase
   test "create success json" do
     user = create(:user)
     sign_in user
-    repo = create(:repo, :external_id => 'omg')
+    repo = create(:repo, external_id: 'omg')
 
     assert_difference 'GitCommit.count' do
       post :create, format: :json, params: {
@@ -49,7 +49,7 @@ class GitCommitsControllerTest < ActionController::TestCase
 
   test "create success" do
     sign_in create(:user)
-    repo = create(:repo, :external_id => 'omg')
+    repo = create(:repo, external_id: 'omg')
     assert_difference 'GitCommit.count' do
       post :create, params: {
         git_commit: {
@@ -66,10 +66,10 @@ class GitCommitsControllerTest < ActionController::TestCase
 
   test "create pass invalid repo_id" do
     sign_in create(:user)
-    repo = create(:repo, :external_id => 'omg')
+    repo = create(:repo, external_id: 'omg')
     assert_no_difference 'GitCommit.count' do
       post :create, params: {
-        :git_commit => {
+        git_commit: {
           sha: 'sss',
           repo_external_id: 'lol'
         }
@@ -106,7 +106,7 @@ class GitCommitsControllerTest < ActionController::TestCase
   test "latest_commits" do
     gc = []
     10.times do |x|
-      gc[x] = create(:git_commit, :created_at => Time.now + x.day)
+      gc[x] = create(:git_commit, created_at: Time.now + x.day)
     end
 
     get :latest_commits
@@ -124,19 +124,19 @@ class GitCommitsControllerTest < ActionController::TestCase
 
   test "user filtered latest_commits" do
     gc = []
+    user_1 = create(:user)
+    user_2 = create(:user)
     10.times do |x|
-      user_id = x.even? ? 1 : 2
-      gc[x] = create(:git_commit, :user_id => user_id, :created_at => Time.now + x.day)
+      gc[x] = create(:git_commit, user_id: [user_1.id, user_2.id].sample, created_at: Time.now + x.day)
     end
 
-    get :latest_commits, params: { user_ids: [1] }
+    get :latest_commits, params: { user_ids: [user_1.id] }
 
     response = ActiveSupport::JSON.decode(@response.body)
-    assert_equal 5, response.length
-    assert response.collect{|x| x['id']}.include?(gc[0].id)
-    assert response.collect{|x| x['id']}.include?(gc[2].id)
-    assert response.collect{|x| x['id']}.include?(gc[4].id)
-    assert response.collect{|x| x['id']}.include?(gc[6].id)
-    assert response.collect{|x| x['id']}.include?(gc[8].id)
+
+    assert_equal user_1.git_commits.count, response.length
+    assert response.collect{ |x| x['user_id'] }.all? do |gc_user_id|
+      gc_user_id = user1.id
+    end
   end
 end

@@ -18,5 +18,5 @@
 .commits
   - @git_commits.each do |gc|
     .image
-      = render gc, :show_repo => false, :show_name => true
+      = render gc, show_repo: false, show_name: true
 = will_paginate @git_commits

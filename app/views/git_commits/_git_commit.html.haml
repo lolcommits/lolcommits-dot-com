@@ -5,4 +5,4 @@
         %b= link_to git_commit.user.name, user_path(git_commit.user)
       - if show_repo && git_commit.repo
         %b= link_to git_commit.repo.name, repo_path(git_commit.repo)
-  = image_tag git_commit.image
+  = image_tag git_commit.image.url

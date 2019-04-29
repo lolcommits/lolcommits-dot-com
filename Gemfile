@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.6.3"
 
 # Rails
-gem 'rails', '5.0.7.2'
+gem 'rails', '5.2.3'
 gem 'pg', '~> 1.1.4'
 gem 'jquery-rails'
 gem 'coffee-script'
@@ -21,6 +21,9 @@ gem 'fog-aws'
 gem 'haml'
 gem 'simple_form'
 gem 'carrierwave'
+
+gem "bootsnap", ">= 1.1.0", require: false
+gem "listen", ">= 3.0.5", "< 3.2", require: false
 
 group :production do
   gem 'newrelic_rpm'
