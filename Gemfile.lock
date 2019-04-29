@@ -50,15 +50,11 @@ GEM
     bootstrap-will_paginate (1.0.0)
       will_paginate
     builder (3.2.3)
+    byebug (11.0.1)
     carrierwave (1.3.1)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    coderay (1.1.2)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     descendants_tracker (0.0.4)
@@ -168,12 +164,6 @@ GEM
       omniauth (~> 1.9)
     pg (1.1.4)
     power_assert (1.1.4)
-    pry (0.12.2)
-      coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
-    pry-remote (0.1.8)
-      pry (~> 0.9)
-      slop (~> 3.0)
     public_suffix (3.0.3)
     puma (3.12.1)
     rack (2.0.7)
@@ -209,14 +199,29 @@ GEM
       ffi (~> 1.0)
     rmagick (3.1.0)
     ruby_dep (1.5.0)
+    sass (3.7.4)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+    sass-rails (5.0.7)
+      railties (>= 4.0.0, < 6)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
     shoulda (2.11.3)
     shoulda-matchers (4.0.1)
       activesupport (>= 4.2.0)
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    slop (3.6.0)
     spin (0.7.1)
+    spring (2.0.2)
+      activesupport (>= 4.2)
+    spring-watcher-listen (2.0.1)
+      listen (>= 2.7, < 4.0)
+      spring (>= 1.2, < 3.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -233,6 +238,8 @@ GEM
     tilt (2.0.9)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    uglifier (4.1.20)
+      execjs (>= 0.3.0, < 3)
     uuid (2.3.9)
       macaddr (~> 1.0)
     websocket-driver (0.7.0)
@@ -246,8 +253,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-will_paginate
+  byebug
   carrierwave
-  coffee-script
   dotenv-rails
   factory_bot_rails
   fakeweb
@@ -260,17 +267,19 @@ DEPENDENCIES
   mocha
   newrelic_rpm
   omniauth-github
-  pg (~> 1.1.4)
-  pry-remote
-  puma
-  rails (= 5.2.3)
+  pg (>= 0.18, < 2.0)
+  puma (~> 3.11)
+  rails (~> 5.2.3)
   rmagick
+  sass-rails (~> 5.0)
   shoulda
   shoulda-matchers
   simple_form
   spin
-  sprockets-rails
+  spring
+  spring-watcher-listen (~> 2.0.0)
   test-unit
+  uglifier (>= 1.3.0)
   uuid
   will_paginate
 

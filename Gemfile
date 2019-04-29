@@ -2,13 +2,12 @@ source 'https://rubygems.org'
 ruby "2.6.3"
 
 # Rails
-gem 'rails', '5.2.3'
-gem 'pg', '~> 1.1.4'
+gem 'rails', '~> 5.2.3'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 3.11'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'coffee-script'
-gem 'sprockets-rails'
-
-gem 'puma'
 
 gem 'uuid'
 gem 'rmagick'
@@ -23,16 +22,20 @@ gem 'simple_form'
 gem 'carrierwave'
 
 gem "bootsnap", ">= 1.1.0", require: false
-gem "listen", ">= 3.0.5", "< 3.2", require: false
 
 group :production do
   gem 'newrelic_rpm'
 end
 
-gem 'dotenv-rails', groups: [:development, :test]
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
 
 group :development do
-  gem 'pry-remote'
+  gem "listen", ">= 3.0.5", "< 3.2", require: false
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
