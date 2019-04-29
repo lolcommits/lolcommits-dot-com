@@ -1,12 +1,12 @@
-class AnimatedGif < ActiveRecord::Base
+class AnimatedGif < ApplicationRecord
   include Magick
-  attr_accessible :shas, :image
+
   mount_uploader  :image, ImageUploader
 
-  before_create   :store_animation 
+  before_create   :store_animation
   after_create    :close_file
 
-  validates :shas, :presence => true
+  validates :shas, presence: true
   validate  :validate_shas_has_commits
 
   DEFAULT_GIF_DELAY = 100
@@ -18,7 +18,7 @@ class AnimatedGif < ActiveRecord::Base
     animation = generate_animation
     self.image = animation
 
-    ! animation.blank?
+    throw :abort unless !animation.blank?
   end
 
   def fetch_images

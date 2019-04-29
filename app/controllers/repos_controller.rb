@@ -1,13 +1,13 @@
 class ReposController < ApplicationController
-  before_filter :require_current_user, :except => [:show, :index]
-  before_filter :require_current_repo, :only => [:show, :destroy]
+  before_action :require_current_user, :except => [:show, :index]
+  before_action :require_current_repo, :only => [:show, :destroy]
 
   def new
     @repo = Repo.new
   end
 
   def create
-    @repo = Repo.new(params[:repo] || Hash.new)
+    @repo = Repo.new(repo_params || Hash.new)
     if @repo.valid?
       @repo.users << current_user
       @repo.save
@@ -34,7 +34,7 @@ class ReposController < ApplicationController
     end
 
     respond_to do |format|
-        format.json { render json: @repos}
+      format.json { render json: @repos}
     end
   end
 
@@ -58,5 +58,9 @@ class ReposController < ApplicationController
 
   def require_current_repo
     head :not_found unless current_repo
+  end
+
+  def repo_params
+    params.require(:repo).permit(:name)
   end
 end

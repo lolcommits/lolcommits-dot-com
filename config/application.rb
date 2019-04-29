@@ -39,13 +39,6 @@ module LolcommitServer
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-    # Use SQL instead of Active Record's schema dumper when creating the database.
-    # This is necessary if your schema can't be completely dumped by the schema dumper,
-    # like if you have constraints or database-specific column types
-    # config.active_record.schema_format = :sql
-
-    config.active_record.raise_in_transactional_callbacks = true
-
     # Enable the asset pipeline
     config.assets.enabled = true
 
@@ -54,7 +47,5 @@ module LolcommitServer
 
     # redirect domain to custom domain if set
     config.middleware.use 'CustomDomainRedirect' if ENV['CUSTOM_DOMAIN'].present?
-
-    config.firehose = YAML.load_file(Rails.root.join("config", "firehose.yml"))[Rails.env.to_s]
   end
 end

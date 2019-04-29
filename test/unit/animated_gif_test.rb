@@ -8,7 +8,7 @@ class AnimatedGifTest < ActiveSupport::TestCase
 
   test "create from shas" do
     file = File.open("#{Rails.root}/test/fixtures/f0cbd41f2ac.jpg")
-    gc = FactoryBot.create(:git_commit)
+    gc = create(:git_commit)
     HTTParty.expects(:get).returns(FakeHTTPartyResponse.new(:body => file.read))
     gif = AnimatedGif.create(:shas => gc.sha)
     assert_not_nil gif
@@ -30,7 +30,7 @@ class AnimatedGifTest < ActiveSupport::TestCase
 
   test "cannot fetch images from s3" do
     file = File.open("#{Rails.root}/test/fixtures/f0cbd41f2ac.jpg")
-    gc = FactoryBot.create(:git_commit)
+    gc = create(:git_commit)
     HTTParty.expects(:get).returns(FakeHTTPartyResponse.new(:success => false))
     gif = AnimatedGif.create(:shas => gc.sha)
     assert ! gif.persisted?

@@ -2,38 +2,35 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   test "account" do
-    sign_in FactoryBot.create(:user)
+    sign_in create(:user)
     get :account
     assert_response :success
   end
 
   test "show html" do
-    sign_in FactoryBot.create(:user)
-    user2 = FactoryBot.create(:user)
-    get :show, :id => user2.id
+    sign_in create(:user)
+    user2 = create(:user)
+    get :show, params: { id: user2.id }
     assert_response :success
-    assert_equal user2.id, assigns[:selected_user].id
   end
 
   test "show json" do
-    sign_in FactoryBot.create(:user)
-    user2 = FactoryBot.create(:user)
-    get :show, :id => user2.id, :format => :json
+    sign_in create(:user)
+    user2 = create(:user)
+    get :show, format: :json, params: { id: user2.id }
     assert_response :success
-    assert_equal user2.id, assigns[:selected_user].id
   end
 
   test "show json by handle" do
-    sign_in FactoryBot.create(:user)
-    user2 = FactoryBot.create(:user, :name => 'yologuy')
-    get :show, :id => user2.name, :format => :json
+    sign_in create(:user)
+    user2 = create(:user, name: 'yologuy')
+    get :show, format: :json, params: { id: user2.name }
     assert_response :success
-    assert_equal user2.id, assigns[:selected_user].id
   end
 
   test "show not found" do
-    sign_in FactoryBot.create(:user)
-    get :show, :id => 'omgomg'
+    sign_in create(:user)
+    get :show, params: { id: 'omgomg' }
     assert_response :not_found
   end
 end

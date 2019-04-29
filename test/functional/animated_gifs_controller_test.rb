@@ -3,7 +3,7 @@ require 'test_helper'
 class AnimatedGifsControllerTest < ActionController::TestCase
   test "create validation error" do
     assert_no_difference 'AnimatedGif.count' do
-      post :create, :animated_gif => {}
+      post :create, params: { animated_gif: { shas: ' ' } }
     end
 
     assert_response :unprocessable_entity
@@ -11,9 +11,9 @@ class AnimatedGifsControllerTest < ActionController::TestCase
   end
 
   test "create success" do
-    gc = FactoryBot.create(:git_commit)
+    gc = create(:git_commit)
     assert_difference 'AnimatedGif.count' do
-      post :create, :animated_gif => {:shas => gc.sha}
+      post :create, params: { animated_gif: { shas: gc.sha } }
     end
     assert_response :success
     ag = AnimatedGif.last

@@ -18,7 +18,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "destroy user session" do
-    user = FactoryBot.create(:user)
+    user = create(:user)
     sign_in(user)
     delete :destroy
     assert_nil session[:user_id]
@@ -27,7 +27,7 @@ class SessionsControllerTest < ActionController::TestCase
   test "create no user exists" do
     User.destroy_all
     assert_difference 'User.count' do
-      get :create, :provider => 'github'
+      get :create, params: { provider: 'github' }
     end
     assert_redirected_to root_url
 
@@ -40,13 +40,12 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "create user exists" do
-    u = FactoryBot.create(:user, :github_id => 233615)
+    u = create(:user, :github_id => 233615)
 
     assert_no_difference 'User.count' do
-      get :create, :provider => 'github'
+      get :create, params: { provider: 'github' }
     end
     assert_redirected_to root_url
     assert_equal u.id, session[:user_id]
   end
-
 end

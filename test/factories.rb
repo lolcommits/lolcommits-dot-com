@@ -5,12 +5,12 @@ FactoryBot.define do
     sha { Digest::SHA1.hexdigest(UUID.generate(:compact)) }
     association :user
     association :repo
-    image "omgimage"
+    image { Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/f0cbd41f2ac.jpg'), 'image/jpeg') }
   end
 
   factory :user do
-    name "kenmazaika"
-    sequence(:github_id) {|n| n }
+    name { "kenmazaika" }
+    sequence(:github_id) { |n| n }
     sequence(:email) {|n| "kenmazaika#{n}@gmail.com" }
     token { UUID.generate(:compact) }
   end

@@ -8,26 +8,26 @@ class ReposControllerTest < ActionController::TestCase
   end
 
   test "new logged in" do
-    sign_in FactoryBot.create(:user)
+    sign_in create(:user)
     get :new
     assert_response :success
   end
 
   test "create validation error" do
-    sign_in FactoryBot.create(:user)
+    sign_in create(:user)
     assert_no_difference 'Repo.count' do
-      post :create, :repo => Hash.new
+      post :create, params: { repo: { name: ' ' } }
     end
 
     assert_response :unprocessable_entity
   end
 
   test "create success" do
-    user = FactoryBot.create(:user)
+    user = create(:user)
     sign_in user
 
     assert_difference 'Repo.count' do
-      post :create, :repo => {:name => 'lolcommits' }
+      post :create, params: { repo: { name: 'lolcommits' } }
     end
 
     repo = Repo.last
@@ -38,30 +38,30 @@ class ReposControllerTest < ActionController::TestCase
   end
 
   test "show not found" do
-    sign_in FactoryBot.create(:user)
-    get :show, :id => 'omg'
+    sign_in create(:user)
+    get :show, params: { id: 'omg' }
     assert_response :not_found
   end
 
   test "show success" do
-    sign_in FactoryBot.create(:user)
-    repo = FactoryBot.create(:repo)
-    get :show, :id => repo.id
+    sign_in create(:user)
+    repo = create(:repo)
+    get :show, params: { id: repo.id }
     assert_response :success
   end
 
   test "show works logged out too" do
-    repo = FactoryBot.create(:repo)
-    get :show, :id => repo.id
+    repo = create(:repo)
+    get :show, params: { id: repo.id }
     assert_response :success
   end
 
   test "show index" do
-    sign_in FactoryBot.create(:user)
-    repo = FactoryBot.create(:repo)
-    FactoryBot.create(:git_commit, :repo=> repo)
+    sign_in create(:user)
+    repo = create(:repo)
+    create(:git_commit, :repo=> repo)
 
-    get :index, :format => :json
+    get :index, format: :json
 
     assert_response :success
     assert_equal repo.external_id, json_resp.first['external_id']
@@ -70,12 +70,12 @@ class ReposControllerTest < ActionController::TestCase
   end
 
   test "show index with filter" do
-    sign_in FactoryBot.create(:user)
-    repo_a = FactoryBot.create(:repo, :name => 'a')
-    repo_b = FactoryBot.create(:repo, :name => 'b')
-    repo_c = FactoryBot.create(:repo, :name => 'c')
+    sign_in create(:user)
+    repo_a = create(:repo, :name => 'a')
+    repo_b = create(:repo, :name => 'b')
+    repo_c = create(:repo, :name => 'c')
 
-    get :index, :format => :json, :repos => ['a', 'c']
+    get :index, format: :json, params: { repos: ['a', 'c'] }
 
     assert_response :success
     assert_equal 2, json_resp.length
