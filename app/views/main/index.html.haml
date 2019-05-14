@@ -2,7 +2,7 @@
   %h2 Your Latest Lols
   %p
     - @git_commits.each do |git_commit|
-      = link_to(image_tag(git_commit.image.url, width: '185px'), git_commit.raw_url)
+      = link_to(image_tag(git_commit.image.url, width: '185px'), git_commit.image.url)
 %h2
   Getting Started
 %ol

@@ -2,7 +2,6 @@ class GitCommit < ApplicationRecord
   validates :sha, :repo_id, presence: true
 
   mount_uploader :image, ImageUploader
-  mount_uploader :raw,   ImageUploader
 
   belongs_to :user
   belongs_to :repo
