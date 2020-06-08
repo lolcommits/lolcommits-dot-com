@@ -170,7 +170,7 @@ GEM
     pg (1.2.3)
     power_assert (1.1.7)
     public_suffix (4.0.4)
-    puma (3.12.4)
+    puma (3.12.6)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -274,7 +274,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-github
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   rmagick
   sass-rails (~> 5.0)
