@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 ruby "2.7.1"
 
 # Rails
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.12'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'puma', '~> 4'
+gem 'sass-rails', '~> 6'
+gem 'uglifier'
 gem 'jquery-rails'
 
 gem 'uuid'
@@ -21,7 +21,7 @@ gem 'haml'
 gem 'simple_form'
 gem 'carrierwave'
 
-gem "bootsnap", ">= 1.1.0", require: false
+gem "bootsnap", ">= 1.4.6", require: false
 
 group :production do
   gem 'newrelic_rpm'
@@ -35,7 +35,7 @@ end
 group :development do
   gem "listen", ">= 3.0.5", "< 3.2", require: false
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
