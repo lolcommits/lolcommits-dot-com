@@ -11,14 +11,12 @@ Rails.application.routes.draw do
   get  '/auth/:provider/callback', to: 'sessions#create', as: 'auth_callback'
   post '/auth/:provider/callback', to: 'sessions#create'
 
-  get  '/auth/github', as: 'auth_github'
-
   resource :sessions, only: [:destroy]
 
   resource :users, only: [] do
     get 'account'
   end
-  resources :users, only: :show
 
+  resources :users, only: :show
   root to: "main#index"
 end

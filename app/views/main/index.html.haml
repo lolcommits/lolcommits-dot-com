@@ -8,9 +8,9 @@
 %ol
   - if current_user.blank?
     %li
-      = link_to 'Login', auth_github_path
+      = link_to 'Login', "/auth/github", method: :post
       or
-      = link_to 'Sign Up', auth_github_path
+      = link_to 'Signup', "/auth/github", method: :post
 
   %li
     Install latest version of lolcommits and the dotcom plugin:

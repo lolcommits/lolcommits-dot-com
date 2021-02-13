@@ -126,8 +126,12 @@ class GitCommitsControllerTest < ActionController::TestCase
     gc = []
     user_1 = create(:user)
     user_2 = create(:user)
-    10.times do |x|
-      gc[x] = create(:git_commit, user_id: [user_1.id, user_2.id].sample, created_at: Time.now + x.day)
+
+    5.times do |x|
+      gc[x] = create(:git_commit, user_id: user_1.id, created_at: Time.now + x.day)
+    end
+    4.times do |x|
+      gc[x] = create(:git_commit, user_id: user_2.id, created_at: Time.now + x.day)
     end
 
     get :latest_commits, params: { user_ids: [user_1.id] }
