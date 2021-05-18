@@ -4,7 +4,7 @@ ruby "2.7.2"
 # Rails
 gem 'rails', '~> 5'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4'
+gem 'puma'
 gem 'sass-rails', '~> 6'
 gem 'uglifier'
 gem 'jquery-rails'
